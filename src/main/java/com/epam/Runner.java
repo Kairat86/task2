@@ -1,51 +1,36 @@
 package com.epam;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import com.epam.factory.TextFactory;
+import com.epam.text.Text;
+import com.epam.util.Parser;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.*;
+import java.util.Scanner;
 
 public class Runner {
 
-    public static void main(String[] args) {
+   private final static Logger logger= LoggerFactory.getLogger(Runner.class.getSimpleName());
 
-       InputStream in= Runner.class.getClassLoader().getResourceAsStream("text.txt");
-       String sourceString=getStringFromInputStream(in);
+    public static void main(String[] args) throws IOException {
+
+        String sourceString= TextFactory.createTextFromFile("text.txt");
 
 
-        for (char ch:sourceString.toCharArray()) {
-            System.out.println((int)ch);
-        }
+        Text text= Parser.parseText(sourceString);
+      System.out.println(text.toString());
+
+
+     //   System.out.println(text.toPlaitText());
+
+
+
+    }
+
 
 
     }
 
-    private static String getStringFromInputStream(InputStream is) {
 
-        BufferedReader br = null;
-        StringBuilder sb = new StringBuilder();
 
-        String line;
-        try {
-
-            br = new BufferedReader(new InputStreamReader(is));
-            while ((line = br.readLine()) != null) {
-                sb.append(line);
-            }
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (br != null) {
-                try {
-                    br.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-
-        return sb.toString();
-
-    }
-}
