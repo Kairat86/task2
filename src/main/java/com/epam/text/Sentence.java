@@ -15,13 +15,13 @@ public class Sentence {
         wordList.add(word);
     }
 
-    public Word get(int index){
+    public Word get(int index) {
         return wordList.get(index);
     }
 
     public String toPlainText(StringBuilder sb) {
-        for (Word w:wordList) {
-           w.toPlainText(sb);
+        for (Word w : wordList) {
+            w.toPlainText(sb);
         }
         return sb.toString();
     }

@@ -7,22 +7,31 @@ public class Paragraph {
 
     private List<Sentence> sentenceList;
 
-    public Paragraph(){
-        this.sentenceList=new ArrayList<>();
+    public Paragraph() {
+        this.sentenceList = new ArrayList<>();
     }
 
     public void add(Sentence sentence) {
         sentenceList.add(sentence);
     }
 
-    public Sentence get(int index){
+    public Sentence get(int index) {
         return sentenceList.get(index);
     }
 
     public String toPlainText(StringBuilder sb) {
-        for (Sentence s:sentenceList) {
+        for (Sentence s : sentenceList) {
             s.toPlainText(sb);
         }
-    return sb.toString();
+        return sb.toString();
+    }
+
+    @Override
+    public String toString() {
+        return "Number of sentences=" + this.size();
+    }
+
+    private int size() {
+        return sentenceList.size();
     }
 }

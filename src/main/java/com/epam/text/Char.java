@@ -1,8 +1,12 @@
 package com.epam.text;
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class Char {
 
+    private final static Logger logger= LoggerFactory.getLogger(Char.class.getSimpleName());
 
     private char value;
 
@@ -20,12 +24,13 @@ public class Char {
 
         static {
             for (int i = 0; i < 1071; i++) {
-                chArray[i] = new Char((char) i);
+                chArray[i] = new Char((char)i);
             }
         }
 
         public static Char checkAndReturn(char ch) {
-            if (ch == chArray.length) {
+            if (ch == chArray[(int)ch].value) {
+                logger.info("Got char from cache");
                 return chArray[ch];
             }
             return chArray[ch] = new Char(ch);

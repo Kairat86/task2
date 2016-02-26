@@ -22,21 +22,20 @@ public class Text {
         return paragraphList.get(index);
     }
 
-    public String toPlaitText(){
-        StringBuilder sb= new StringBuilder();
-        for(Paragraph p:paragraphList){
-           p.toPlainText(sb);
+    public String toPlaitText() {
+        StringBuilder sb = new StringBuilder();
+        for (Paragraph p : paragraphList) {
+            p.toPlainText(sb);
         }
         return sb.toString();
     }
 
-    public int size(){
-       return paragraphList.size();
+    public int size() {
+        return paragraphList.size();
     }
 
     @Override
-    public String toString(){
-
-        return "Number of paragraphs="+this.size();
+    public String toString() {
+        return "Number of paragraphs=" + this.size();
     }
 }

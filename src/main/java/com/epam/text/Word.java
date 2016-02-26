@@ -23,7 +23,7 @@ public class Word {
 
     public String toPlainText(StringBuilder sb) {
 
-        for (Char ch:charList) {
+        for (Char ch : charList) {
             sb.append(ch.getValue());
         }
         return sb.toString();
