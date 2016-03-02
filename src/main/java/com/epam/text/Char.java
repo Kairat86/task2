@@ -29,11 +29,10 @@ public class Char {
         }
 
         public static Char checkAndReturn(char ch) {
-            if (ch == chArray[(int)ch].value) {
-                logger.info("Got char from cache");
-                return chArray[ch];
+            if (chArray[ch]==null) {
+               return chArray[ch] = new Char(ch);
             }
-            return chArray[ch] = new Char(ch);
+            return chArray[ch];
         }
     }
 
