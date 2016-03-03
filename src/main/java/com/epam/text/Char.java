@@ -48,7 +48,7 @@ public abstract class Char {
             }else if("`~@#$%^&*_+=/|\\><".indexOf(i)>=0){
                 logger.info(c+"");
                 return new Symbol(c);
-            }else if(".?!:;,-()\"[]{}'".indexOf(i)>0){
+            }else if(".?!:;,-()\"[]{}'".indexOf(i)>=0){
                 return new Stop(c);
             }else {
                 return new Letter(c);
