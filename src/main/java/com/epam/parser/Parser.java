@@ -1,49 +1,22 @@
 package com.epam.parser;
 
-import com.epam.text.*;
+import com.epam.text.Paragraph;
+import com.epam.text.Sentence;
+import com.epam.text.Text;
+import com.epam.text.Word;
 
-public class Parser {
+public interface Parser {
 
-    public static Text parseText(String src) {
-        Text text = new Text();
-        String[] paragraphStrings = src.split("(?<=(\\n) {4})");
-        for (String paragraphStr : paragraphStrings) {
-            Paragraph paragraph = parseParagraph(paragraphStr);
-            text.add(paragraph);
-        }
-        return text;
-    }
+    String PARAGRAPH_REGEX = "paragraph_regex";
+    String SENTENCE_REGEX = "sentence_regex";
+    String WORD_REGEX = "word_regex";
 
-    private static Paragraph parseParagraph(String src) {
-        Paragraph paragraph = new Paragraph();
-        String[] sentenceStrs = src.split("(?<=[.!?])( )");
-        for (String sentenceStr : sentenceStrs) {
-            Sentence sentence = parseSentence(sentenceStr);
-            paragraph.add(sentence);
-        }
-        return paragraph;
-    }
+    Text parseText(String src);
 
-    private static Sentence parseSentence(String src) {
-        Sentence sentence = new Sentence();
-        String[] wordStrs = src.split("(?<= +)");
-        for (String wordStr : wordStrs) {
-            Word word = parseWord(wordStr);
-            sentence.add(word);
-        }
-        return sentence;
-    }
+    Paragraph parseParagraph(String src);
 
-    private static Word parseWord(String src) {
-        Word word = new Word();
-        char[] chars = src.toCharArray();
-        for (char ch : chars) {
-            Char charr = Char.of(ch);
-            word.add(charr);
-        }
-        return word;
-    }
+    Sentence parseSentence(String src);
+
+    Word parseWord(String src);
 
 }
-
-

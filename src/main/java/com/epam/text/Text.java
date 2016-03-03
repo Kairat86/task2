@@ -22,7 +22,7 @@ public class Text {
         return paragraphList.get(index);
     }
 
-    public String toPlaitText() {
+    public String toPlainText() {
         StringBuilder sb = new StringBuilder();
         for (Paragraph p : paragraphList) {
             p.toPlainText(sb);

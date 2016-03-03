@@ -1,7 +1,5 @@
 package com.epam.text;
 
-import javafx.scene.chart.Chart;
-
 import java.util.ArrayList;
 import java.util.List;
 
