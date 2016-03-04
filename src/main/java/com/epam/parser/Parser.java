@@ -10,6 +10,7 @@ public interface Parser {
     String SENTENCE_REGEX = "sentence_regex";
     String WORD_REGEX = "word_regex";
 
+    <T extends BaseEntity> T parse(Class<T> type, String src) throws OperationNotSupportedException;
 
     Text parseText(String src);
 
@@ -19,6 +20,5 @@ public interface Parser {
 
     Word parseWord(String src);
 
-    <T extends BaseEntity> T parse(Class<T> type, String src) throws OperationNotSupportedException;
 
 }
