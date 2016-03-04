@@ -1,9 +1,11 @@
 package com.epam.text;
 
+import com.epam.text2.Component;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class Sentence {
+public class Sentence extends BaseEntity implements Component {
 
     private List<Word> wordList;
 
@@ -19,10 +21,10 @@ public class Sentence {
         return wordList.get(index);
     }
 
-    public String toPlainText(StringBuilder sb) {
+    public StringBuilder toPlainText(StringBuilder sb) {
         for (Word w : wordList) {
             w.toPlainText(sb);
         }
-        return sb.toString();
+        return sb;
     }
 }

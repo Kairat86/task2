@@ -1,15 +1,15 @@
 package com.epam.parser;
 
-import com.epam.text.Paragraph;
-import com.epam.text.Sentence;
-import com.epam.text.Text;
-import com.epam.text.Word;
+import com.epam.text.*;
+
+import javax.naming.OperationNotSupportedException;
 
 public interface Parser {
 
     String PARAGRAPH_REGEX = "paragraph_regex";
     String SENTENCE_REGEX = "sentence_regex";
     String WORD_REGEX = "word_regex";
+
 
     Text parseText(String src);
 
@@ -18,5 +18,7 @@ public interface Parser {
     Sentence parseSentence(String src);
 
     Word parseWord(String src);
+
+    <T extends BaseEntity> T parse(Class<T> type, String src) throws OperationNotSupportedException;
 
 }

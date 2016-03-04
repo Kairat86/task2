@@ -3,15 +3,22 @@ package com.epam.parser;
 import com.epam.text.*;
 import com.epam.util.PropertyManager;
 
+import javax.naming.OperationNotSupportedException;
+
 public class ParserImplementation implements Parser {
 
     private PropertyManager propertyManager;
 
     public ParserImplementation(PropertyManager propertyManager) {
-        this.propertyManager=propertyManager;
+        this.propertyManager = propertyManager;
     }
 
-    public  Text parseText(String src) {
+    @Override
+    public <T extends BaseEntity> T parse(Class<T> type, String src) throws OperationNotSupportedException {
+        throw new OperationNotSupportedException("This operation is not supported in this parser");
+    }
+
+    public Text parseText(String src) {
         Text text = new Text();
         String[] paragraphStrings = src.split(propertyManager.getProperty(PARAGRAPH_REGEX));
         for (String paragraphStr : paragraphStrings) {
@@ -21,7 +28,7 @@ public class ParserImplementation implements Parser {
         return text;
     }
 
-      public Paragraph parseParagraph(String src) {
+    public Paragraph parseParagraph(String src) {
         Paragraph paragraph = new Paragraph();
         String[] sentenceStrs = src.split(propertyManager.getProperty(SENTENCE_REGEX));
         for (String sentenceStr : sentenceStrs) {
@@ -31,7 +38,7 @@ public class ParserImplementation implements Parser {
         return paragraph;
     }
 
-    public   Sentence parseSentence(String src) {
+    public Sentence parseSentence(String src) {
         Sentence sentence = new Sentence();
         String[] wordStrs = src.split(propertyManager.getProperty(WORD_REGEX));
         for (String wordStr : wordStrs) {
@@ -45,7 +52,7 @@ public class ParserImplementation implements Parser {
         Word word = new Word();
         char[] chars = src.toCharArray();
         for (char c : chars) {
-            Char ch= Symbol.of(c);
+            Char ch = Char.of(c);
             word.add(ch);
         }
         return word;

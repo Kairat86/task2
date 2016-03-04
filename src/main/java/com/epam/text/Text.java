@@ -1,9 +1,11 @@
 package com.epam.text;
 
+import com.epam.text2.Component;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class Text {
+public class Text extends BaseEntity implements Component {
 
     private List<Paragraph> paragraphList;
 
@@ -22,12 +24,12 @@ public class Text {
         return paragraphList.get(index);
     }
 
-    public String toPlainText() {
-        StringBuilder sb = new StringBuilder();
+    public StringBuilder toPlainText(StringBuilder stringBuilder) {
+
         for (Paragraph p : paragraphList) {
-            p.toPlainText(sb);
+            p.toPlainText(stringBuilder);
         }
-        return sb.toString();
+        return stringBuilder;
     }
 
     public int size() {

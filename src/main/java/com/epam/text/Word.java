@@ -1,9 +1,11 @@
 package com.epam.text;
 
+import com.epam.text2.Component;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class Word {
+public class Word extends BaseEntity implements Component{
 
     private List<Char> charList;
 
@@ -19,11 +21,11 @@ public class Word {
         return charList.get(index);
     }
 
-    public String toPlainText(StringBuilder sb) {
+    public StringBuilder toPlainText(StringBuilder sb) {
 
         for (Char ch : charList) {
-            sb.append(ch.getValue());
+            ch.toPlainText(sb);
         }
-        return sb.toString();
+        return sb;
     }
 }

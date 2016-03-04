@@ -1,12 +1,15 @@
 package com.epam;
 
 import com.epam.parser.Parser;
+import com.epam.parser.UniversalParser;
 import com.epam.text.Text;
 import com.epam.parser.ParserImplementation;
+import com.epam.text2.Component;
 import com.epam.util.PropertyManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.naming.OperationNotSupportedException;
 import java.io.*;
 import java.util.Scanner;
 
@@ -21,7 +24,19 @@ public class Runner {
         propertyManager.load(REGEX_PROPERTIES_FILE);
         Parser parser=new ParserImplementation(propertyManager);
         Text text = parser.parseText(sourceString);
-        System.out.println(text.toPlainText());
+       // System.out.println(text.toPlainText(new StringBuilder()));
+
+        Component component=parser.parseParagraph(sourceString);
+    //    System.out.println(component.toPlainText(new StringBuilder()));
+
+        parser=new UniversalParser(propertyManager);
+        try {
+            text=parser.parse(Text.class,sourceString);
+        } catch (OperationNotSupportedException e) {
+            System.out.println("Catch");
+        }
+
+        System.out.println(text.toPlainText(new StringBuilder()));
     }
 
     public static String readFromFile(String path) {

@@ -1,12 +1,10 @@
 package com.epam.text;
 
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.epam.text2.Component;
 
-public abstract class Char {
+public abstract class Char extends BaseEntity implements Component {
 
-    private final static Logger logger= LoggerFactory.getLogger(Char.class.getSimpleName());
 
     private char value;
 
@@ -20,44 +18,41 @@ public abstract class Char {
         return Cache.checkAndReturn(ch);
     }
 
+
     private static class Cache {
         private static Char[] chArray = new Char[65536];
 
-
         static {
             for (int i = 0; i < 1104; i++) {
-                chArray[i]=defineCharType(i);
+                chArray[i] = defineCharType(i);
             }
         }
 
 
-
         public static Char checkAndReturn(char ch) {
 
-            if (chArray[ch]==null) {
-               logger.info("Added '{}'=>{} to cache", ch,(int)ch);
-               return chArray[ch] =defineCharType(ch);
+            if (chArray[ch] == null) {
+                return chArray[ch] = defineCharType(ch);
             }
             return chArray[ch];
         }
 
         private static Char defineCharType(int i) {
-            char c=(char)i;
-            if("0123456789".indexOf(i)>=0){
+            char c = (char) i;
+            if ("0123456789".indexOf(i) >= 0) {
                 return new Number(c);
-            }else if("`~@#$%^&*_+=/|\\><".indexOf(i)>=0){
-                logger.info(c+"");
-                return new Symbol(c);
-            }else if(".?!:;,-()\"[]{}'".indexOf(i)>=0){
-                return new Stop(c);
-            }else {
+            } else if ("`~@#$%^&*_+=/|\\><".indexOf(i) >= 0) {
+                return new Alpha(c);
+            } else if (".?!:;,-()\"[]{}'".indexOf(i) >= 0) {
+                return new Punctuation(c);
+            } else {
                 return new Letter(c);
             }
         }
     }
 
-    public char getValue() {
-        return value;
+    public StringBuilder toPlainText(StringBuilder sb) {
+        return sb.append(value);
     }
 
 }

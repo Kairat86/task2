@@ -1,9 +1,11 @@
 package com.epam.text;
 
+import com.epam.text2.Component;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class Paragraph {
+public class Paragraph extends BaseEntity implements Component {
 
     private List<Sentence> sentenceList;
 
@@ -19,11 +21,11 @@ public class Paragraph {
         return sentenceList.get(index);
     }
 
-    public String toPlainText(StringBuilder sb) {
+    public StringBuilder toPlainText(StringBuilder sb) {
         for (Sentence s : sentenceList) {
             s.toPlainText(sb);
         }
-        return sb.toString();
+        return sb;
     }
 
     @Override
