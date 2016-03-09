@@ -1,4 +1,4 @@
-package com.epam.text2;
+package com.epam.text;
 
 public interface Component {
     StringBuilder toPlainText(StringBuilder sb);

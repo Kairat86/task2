@@ -1,8 +1,6 @@
 package com.epam.text;
 
 
-import com.epam.text2.Component;
-
 public abstract class Char extends BaseEntity implements Component {
 
 

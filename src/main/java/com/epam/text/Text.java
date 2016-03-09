@@ -1,7 +1,5 @@
 package com.epam.text;
 
-import com.epam.text2.Component;
-
 import java.util.ArrayList;
 import java.util.List;
 

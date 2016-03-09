@@ -2,14 +2,9 @@ package com.epam.parser;
 
 
 import com.epam.text.*;
-import com.epam.text2.Component;
 import com.epam.util.PropertyManager;
 
 import javax.naming.OperationNotSupportedException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.List;
 
 public class UniversalParser implements Parser {
 

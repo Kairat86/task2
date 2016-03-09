@@ -4,7 +4,7 @@ import com.epam.parser.Parser;
 import com.epam.parser.UniversalParser;
 import com.epam.text.Text;
 import com.epam.parser.ParserImplementation;
-import com.epam.text2.Component;
+import com.epam.text.Component;
 import com.epam.util.PropertyManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
