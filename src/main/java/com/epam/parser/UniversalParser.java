@@ -26,28 +26,25 @@ public class UniversalParser implements Parser {
             System.out.println("Access denied");
         }
         if (t instanceof Text) {
-            System.out.println("Parsing text");
             parts = src.split(propertyManager.getProperty(PARAGRAPH_REGEX));
             for (String s : parts) {
                 Paragraph paragraph = parse(Paragraph.class, s);
                 ((Text) t).add(paragraph);
             }
         } else if (t instanceof Paragraph) {
-            System.out.println("Parsing paragraph");
             parts = src.split(propertyManager.getProperty(SENTENCE_REGEX));
             for (String s : parts) {
                 Sentence sentence = parse(Sentence.class, s);
                 ((Paragraph) t).add(sentence);
             }
         } else if (t instanceof Sentence) {
-            System.out.println("parsing sentence");
+
             parts = src.split(propertyManager.getProperty(WORD_REGEX));
             for (String s : parts) {
                 Word word = parse(Word.class, s);
                 ((Sentence) t).add(word);
             }
         } else if (t instanceof Word) {
-            System.out.println("parsing word");
             char[] chars = src.toCharArray();
             for (char ch : chars) {
                 ((Word) t).add(Char.of(ch));

@@ -1,9 +1,10 @@
 package com.epam.text;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
-public class Word extends BaseEntity implements Component{
+public class Word extends BaseEntity implements Iterable<Char>{
 
     private List<Char> charList;
 
@@ -25,5 +26,10 @@ public class Word extends BaseEntity implements Component{
             ch.toPlainText(sb);
         }
         return sb;
+    }
+
+    @Override
+    public Iterator<Char> iterator() {
+        return charList.iterator();
     }
 }

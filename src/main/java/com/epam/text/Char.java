@@ -1,7 +1,7 @@
 package com.epam.text;
 
 
-public abstract class Char extends BaseEntity implements Component {
+public abstract class Char extends BaseEntity {
 
 
     private char value;
@@ -39,7 +39,7 @@ public abstract class Char extends BaseEntity implements Component {
             char c = (char) i;
             if ("0123456789".indexOf(i) >= 0) {
                 return new Number(c);
-            } else if ("`~@#$%^&*_+=/|\\><".indexOf(i) >= 0) {
+            } else if ("`~@#$%^&*_+=/|\\>< ".indexOf(i) >= 0) {
                 return new Alpha(c);
             } else if (".?!:;,-()\"[]{}'".indexOf(i) >= 0) {
                 return new Punctuation(c);

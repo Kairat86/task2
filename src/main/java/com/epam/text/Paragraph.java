@@ -1,9 +1,10 @@
 package com.epam.text;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
-public class Paragraph extends BaseEntity implements Component {
+public class Paragraph extends BaseEntity implements Iterable<Sentence> {
 
     private List<Sentence> sentenceList;
 
@@ -31,7 +32,12 @@ public class Paragraph extends BaseEntity implements Component {
         return "Number of sentences=" + this.size();
     }
 
-    private int size() {
+    public int size() {
         return sentenceList.size();
+    }
+
+    @Override
+    public Iterator<Sentence> iterator() {
+        return sentenceList.iterator();
     }
 }

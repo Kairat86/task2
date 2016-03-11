@@ -1,11 +1,13 @@
 package com.epam.text;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
-public class Text extends BaseEntity implements Component {
+public class Text extends BaseEntity implements  Iterable<Paragraph> {
 
     private List<Paragraph> paragraphList;
+    private Iterator genericIterator;
 
     public Text() {
         this.paragraphList = new ArrayList<>();
@@ -38,4 +40,12 @@ public class Text extends BaseEntity implements Component {
     public String toString() {
         return "Number of paragraphs=" + this.size();
     }
+
+
+    @Override
+    public Iterator<Paragraph> iterator() {
+        return paragraphList.iterator();
+    }
+
+
 }

@@ -1,9 +1,10 @@
 package com.epam.text;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
-public class Sentence extends BaseEntity implements Component {
+public class Sentence extends BaseEntity implements Iterable<Word> {
 
     private List<Word> wordList;
 
@@ -24,5 +25,13 @@ public class Sentence extends BaseEntity implements Component {
             w.toPlainText(sb);
         }
         return sb;
+    }
+
+    public Iterator<Word> iterator() {
+        return wordList.iterator();
+    }
+
+    public int size() {
+        return wordList.size();
     }
 }
