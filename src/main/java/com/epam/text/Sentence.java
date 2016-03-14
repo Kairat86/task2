@@ -4,34 +4,38 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class Sentence extends BaseEntity implements Iterable<Word> {
+public class Sentence extends BaseEntity implements Iterable<SentencePart> {
 
-    private List<Word> wordList;
+    private List<SentencePart> wordList;
 
     public Sentence() {
         this.wordList = new ArrayList<>();
     }
 
-    public void add(Word word) {
+    public void add(SentencePart word) {
         wordList.add(word);
     }
 
-    public Word get(int index) {
+    public SentencePart get(int index) {
         return wordList.get(index);
     }
 
     public StringBuilder toPlainText(StringBuilder sb) {
-        for (Word w : wordList) {
+        for (SentencePart w : wordList) {
             w.toPlainText(sb);
         }
         return sb;
     }
 
-    public Iterator<Word> iterator() {
+    public Iterator<SentencePart> iterator() {
         return wordList.iterator();
     }
 
     public int size() {
         return wordList.size();
+    }
+
+    public boolean contains(SentencePart o) {
+        return wordList.contains(o);
     }
 }

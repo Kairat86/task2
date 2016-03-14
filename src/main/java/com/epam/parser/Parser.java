@@ -18,7 +18,7 @@ public interface Parser {
 
     Sentence parseSentence(String src);
 
-    Word parseWord(String src);
+    SentencePart parseWord(String src);
 
 
 }

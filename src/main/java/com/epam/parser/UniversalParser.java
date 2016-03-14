@@ -41,15 +41,23 @@ public class UniversalParser implements Parser {
 
             parts = src.split(propertyManager.getProperty(WORD_REGEX));
             for (String s : parts) {
-                Word word = parse(Word.class, s);
+                SentencePart word = parse(SentencePart.class, s);
                 ((Sentence) t).add(word);
             }
-        } else if (t instanceof Word) {
+        } else if (t instanceof SentencePart) {
+
+            SentencePart sentencePart=((SentencePart) t);
             char[] chars = src.toCharArray();
-            for (char ch : chars) {
-                ((Word) t).add(Char.of(ch));
+            if(",.:?! ".indexOf(chars[chars.length-1])>=0){
+                sentencePart.setWord(src.substring(0,src.length()-1));
+            }else {
+                sentencePart.setWord(src);
             }
 
+
+            for (char ch : chars) {
+               sentencePart.add(Char.of(ch));
+            }
         }
         return t;
     }
@@ -86,10 +94,10 @@ public class UniversalParser implements Parser {
         return sentence;
     }
 
-    public Word parseWord(String src) {
-        Word word = new Word();
+    public SentencePart parseWord(String src) {
+        SentencePart word = new SentencePart();
         try {
-            word = parse(Word.class, src);
+            word = parse(SentencePart.class, src);
         } catch (OperationNotSupportedException e) {
             word = new ParserImplementation(propertyManager).parseWord(src);
         }

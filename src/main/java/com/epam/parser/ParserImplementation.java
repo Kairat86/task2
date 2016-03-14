@@ -42,20 +42,26 @@ public class ParserImplementation implements Parser {
         Sentence sentence = new Sentence();
         String[] wordStrs = src.split(propertyManager.getProperty(WORD_REGEX));
         for (String wordStr : wordStrs) {
-            Word word = parseWord(wordStr);
+            SentencePart word = parseWord(wordStr);
             sentence.add(word);
         }
         return sentence;
     }
 
-    public Word parseWord(String src) {
-        Word word = new Word();
+    public SentencePart parseWord(String src) {
+      SentencePart sentencePart=null;
+
         char[] chars = src.toCharArray();
+       if(",.:?!".indexOf(chars[chars.length-1])>=0){
+            sentencePart=new SentencePart(src.substring(0,src.length()-1));
+        }else {
+           sentencePart=new SentencePart(src);
+       }
         for (char c : chars) {
             Char ch = Char.of(c);
-            word.add(ch);
+            sentencePart.add(ch);
         }
-        return word;
+        return sentencePart;
     }
 
 }
